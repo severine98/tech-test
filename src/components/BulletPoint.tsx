@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { ArrayMax5 } from "../globalTypes";
 import { colors, spacing } from "../styles";
 
 type BulletPointProps = {
-  //   sentences: readonly [string, string?, string?, string?, string?];
-  sentences: string[];
+  sentences: ArrayMax5;
 };
 
 export const BulletPoint = ({ sentences }: BulletPointProps) => {
