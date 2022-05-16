@@ -6,10 +6,10 @@ import {
   ArrowRightIcon,
   BookIcon,
   BulletPoint,
-  CustomModal,
 } from "./src/components";
 import { ArrayMax5 } from "./src/globalTypes";
-import { colors, spacing, widthPct } from "./src/styles";
+import { CustomModal } from "./src/screens";
+import { colors, spacing } from "./src/styles";
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
 
