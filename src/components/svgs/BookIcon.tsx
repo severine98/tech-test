@@ -2,11 +2,18 @@ import * as React from "react";
 import Svg, { SvgProps, Path } from "react-native-svg";
 
 const BookIcon = (props: SvgProps) => (
-  <Svg width={23} height={20} fill="none" {...props}>
+  <Svg width={26} height={24} fill="none" {...props}>
     <Path
-      d="M1 1h6.103c1.08 0 2.115.421 2.878 1.172A3.966 3.966 0 0 1 11.172 5v14c0-.796-.321-1.559-.893-2.121A3.079 3.079 0 0 0 8.12 16H1V1ZM21.344 1h-6.103c-1.08 0-2.114.421-2.877 1.172A3.966 3.966 0 0 0 11.172 5v14c0-.796.321-1.559.894-2.121A3.079 3.079 0 0 1 14.224 16h7.12V1Z"
-      stroke={"#45403F"}
-      strokeWidth={1.5}
+      d="M1 1h7.02a4.58 4.58 0 0 1 3.31 1.432 5.002 5.002 0 0 1 1.37 3.457V23c0-.973-.37-1.905-1.028-2.593a3.435 3.435 0 0 0-2.482-1.074H1V1Z"
+      stroke={props.stroke ?? "#000000"}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Path
+      d="M24.4 1h-7.02a4.58 4.58 0 0 0-3.31 1.432 5.002 5.002 0 0 0-1.37 3.457V23c0-.973.369-1.905 1.027-2.593a3.435 3.435 0 0 1 2.482-1.074h8.19V1Z"
+      stroke={props.stroke ?? "#000000"}
+      strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"
     />
