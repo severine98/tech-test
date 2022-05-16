@@ -1,25 +1,19 @@
+import { BlurView } from "expo-blur";
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Modal,
-  Alert,
-  Image,
-  Pressable,
-} from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import {
   ArrowLeftIcon,
+  ArrowRightIcon,
   BookIcon,
   BulletPoint,
-  CrossIcon,
-  ArrowRightIcon,
+  CustomModal,
 } from "./src/components";
+import { ArrayMax5 } from "./src/globalTypes";
 import { colors, spacing, widthPct } from "./src/styles";
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const sentences = [
+  const sentences: ArrayMax5 = [
     "Understand what patterns drive your anxiety",
     "Learn validated tools to change those patterns",
     "Practice reducing anxiety in a safe space",
@@ -32,22 +26,10 @@ export default function App() {
         source={require("./assets/background.png")}
       />
       <View style={{ flex: 1 }}>
-        <Modal transparent={true} visible={modalVisible} animationType={"fade"}>
-          <View style={styles.modal}>
-            <Pressable onPress={() => setModalVisible(false)}>
-              <CrossIcon style={{ alignSelf: "flex-end" }} />
-            </Pressable>
-            <BookIcon
-              style={{ alignSelf: "center", marginBottom: spacing.base }}
-            />
-            <View style={styles.seperationLine} />
-            <Image
-              style={styles.yogaImage}
-              accessibilityLabel="yoga pose"
-              source={require("./assets/yoga.png")}
-            />
-          </View>
-        </Modal>
+        <CustomModal
+          modalVisible={modalVisible}
+          setModalVisible={() => setModalVisible(false)}
+        />
         <Text style={styles.title}>To reach this goal, we will:</Text>
         <BulletPoint sentences={sentences} />
         <Pressable
@@ -58,6 +40,7 @@ export default function App() {
           <Text>What will I learn?</Text>
         </Pressable>
       </View>
+
       <View style={styles.arrowsContainer}>
         <ArrowLeftIcon />
         <View
@@ -71,11 +54,21 @@ export default function App() {
           <ArrowRightIcon />
         </View>
       </View>
+      {modalVisible && <BlurView intensity={10} style={styles.blurView} />}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  text: {
+    backgroundColor: "red",
+    padding: 10,
+    color: "white",
+    marginTop: 60,
+  },
+  blurView: {
+    ...StyleSheet.absoluteFillObject,
+  },
   backgroundImage: {
     position: "absolute",
   },
@@ -106,39 +99,30 @@ const styles = StyleSheet.create({
   },
   learningCard: {
     marginTop: spacing.huge,
-    backgroundColor: colors.white,
     padding: spacing.baseSmall,
     marginHorizontal: spacing.base,
     borderRadius: 12,
     flexDirection: "row",
+    backgroundColor: colors.white,
+    elevation: 3,
+    shadowColor: "rgb(151, 151, 151)",
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
   },
   book: {
     marginRight: spacing.base,
-  },
-  modal: {
-    flex: 1,
-    backgroundColor: colors.white,
-    marginVertical: widthPct(20),
-    marginHorizontal: widthPct(5),
-    borderRadius: 12,
-    padding: widthPct(5),
-  },
-  yogaImage: {
-    width: 250,
-    height: 150,
-    borderRadius: 12,
-    overflow: "hidden",
-    alignSelf: "center",
-  },
-  seperationLine: {
-    width: "100%",
-    backgroundColor: colors.lightGrey,
-    height: 1,
-    marginBottom: spacing.small,
   },
   arrowsContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  blurContainer: {
+    padding: 20,
+    borderWidth: 5,
   },
 });
