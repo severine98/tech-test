@@ -1,1 +1,1 @@
-export type ArrayMax5 = [string, string?, string?, string?, string?];
+export type BulletPointType = [string, string?, string?, string?, string?];
