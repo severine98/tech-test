@@ -1,28 +1,34 @@
 import { BlurView } from "expo-blur";
 import React, { useState } from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  ImageBackground,
+} from "react-native";
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
   BookIcon,
   BulletPoint,
 } from "./src/components";
-import { ArrayMax5 } from "./src/globalTypes";
+import { BulletPointType } from "./src/globalTypes";
 import { CustomModal } from "./src/screens";
 import { colors, spacing } from "./src/styles";
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const sentences: ArrayMax5 = [
+  const sentences: BulletPointType = [
     "Understand what patterns drive your anxiety",
     "Learn validated tools to change those patterns",
     "Practice reducing anxiety in a safe space",
   ];
   return (
-    <View style={styles.blurredContainer}>
-      <Image
-        style={styles.backgroundImage}
-        accessibilityLabel="yoga pose"
+    <View style={styles.container}>
+      <ImageBackground
+        style={styles.absoluteFillObject}
+        accessibilityLabel="gradient background"
         source={require("./assets/background.png")}
       />
       <View style={{ flex: 1 }}>
@@ -54,48 +60,36 @@ export default function App() {
           <ArrowRightIcon />
         </View>
       </View>
-      {modalVisible && <BlurView intensity={10} style={styles.blurView} />}
+      {modalVisible && (
+        <BlurView intensity={10} style={styles.absoluteFillObject} />
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: spacing.base,
+    paddingTop: 100,
+    paddingBottom: spacing.base,
+  },
+  absoluteFillObject: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  blurContainer: {
+    padding: 20,
+    borderWidth: 5,
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: spacing.baseLarge,
+  },
   text: {
     backgroundColor: "red",
     padding: 10,
     color: "white",
     marginTop: 60,
-  },
-  blurView: {
-    ...StyleSheet.absoluteFillObject,
-  },
-  backgroundImage: {
-    position: "absolute",
-  },
-  container: {
-    flex: 1,
-    paddingHorizontal: spacing.base,
-    backgroundColor: "#fff",
-    paddingTop: 100,
-    paddingBottom: spacing.base,
-  },
-  blurredContainer: {
-    flex: 1,
-    paddingHorizontal: spacing.base,
-    paddingTop: 100,
-    paddingBottom: spacing.base,
-    shadowOpacity: 1,
-    shadowColor: "#000",
-    shadowOffset: { width: 10, height: 10 },
-    shadowRadius: 5,
-    elevation: 5,
-    borderWidth: 0.5,
-    borderColor: "white",
-    backgroundColor: "rgba(255, 255, 255, 1)",
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: spacing.baseLarge,
   },
   learningCard: {
     marginTop: spacing.huge,
@@ -120,9 +114,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-  },
-  blurContainer: {
-    padding: 20,
-    borderWidth: 5,
   },
 });
