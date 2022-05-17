@@ -18,8 +18,8 @@ const CustomModal = ({ modalVisible, setModalVisible }: CustomModalProps) => {
         <BookIcon stroke={colors.lightGrey} style={styles.bookIcon} />
         <View style={styles.seperationLine} />
         <Image
-          style={styles.yogaImage}
-          accessibilityLabel="yoga pose"
+          style={styles.plantImage}
+          accessibilityLabel="plant"
           source={require("../../assets/plant.jpeg")}
         />
       </View>
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     height: 1,
     marginBottom: spacing.small,
   },
-  yogaImage: {
+  plantImage: {
     width: 250,
     height: 350,
     borderRadius: 12,
